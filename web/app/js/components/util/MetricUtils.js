@@ -42,9 +42,7 @@ export const processTimeseriesMetrics = (rawTs, targetEntity) => {
 };
 
 export const processRollupMetrics = (rawMetrics, targetEntity) => {
-  let byEntity = _.groupBy(rawMetrics, m => {
-    return m.metadata[targetEntity];
-  });
+  let byEntity = _.groupBy(rawMetrics, "metadata." + targetEntity);
 
   let metrics = _.map(byEntity, (data, entity) => {
     if (!entity) return;
